@@ -318,4 +318,13 @@ async def vipsms_command(interaction: discord.Interaction, numara: str, sayi: in
     job_queue.put((1, {'interaction': interaction, 'tel_no': numara, 'mode': 'turbo', 'kere': sayi, 'user_type': 'vip', 'user_id': interaction.user.id}))
 
 if __name__ == "__main__":
-    bot.run(config['bot_token'])
+    # Önce config.json'a bakar, orada token yoksa Koyeb ayarlarındaki (BOT_TOKEN) kısmına bakar
+    token = config.get('bot_token')
+    if not token or token == "":
+        token = os.getenv('BOT_TOKEN')
+        
+    if token:
+        bot.run(token)
+    else:
+        # Eğer loglar kapalıysa bile bu hata mesajını terminalde zorla gösterir
+        sys.__stdout__.write("❌ HATA: Token bulunamadı! Lütfen config.json veya Koyeb ayarlarına token ekleyin.\n")
