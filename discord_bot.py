@@ -11,6 +11,16 @@ import logging
 from datetime import datetime, timedelta
 import os
 
+# --- AYARLAR KISMI (BURAYI DÜZENLE) ---
+config = {
+    "bot_token": "TOKEN_BURAYA", 
+    "guild_id": 1438232215766171812,
+    "category_id": 1439353556808368329,
+    "allowed_channel_id": 1456966949358800929,
+    "vip_role_id": 1439358082403537008,
+    "normal_role_id": 1439358168990748854
+}
+
 # Logları tamamen kapat
 logging.disable(logging.CRITICAL)
 sys.stdout = open(os.devnull, 'w') if '--silent' in sys.argv else sys.stdout
@@ -641,9 +651,13 @@ async def on_error(event, *args, **kwargs):
     pass
 
 if __name__ == "__main__":
-    token = config.get('bot_token')
-    if not token or token == "":
-        token = os.getenv('BOT_TOKEN')
+    # Önce Koyeb panelindeki BOT_TOKEN'a bakar, yoksa buraya yazdığını kullanır
+    token = os.getenv('BOT_TOKEN') or "BURAYA_TOKENINI_YAZ"
+    
+    if token and token != "BURAYA_TOKENINI_YAZ":
+        bot.run(token)
+    else:
+        sys.__stdout__.write("❌ HATA: Token bulunamadı! Koyeb paneline BOT_TOKEN ekleyin.\n")
         
     if token:
         bot.run(token)
@@ -652,4 +666,5 @@ if __name__ == "__main__":
 
         import traceback
         traceback.print_exc()
+
 
