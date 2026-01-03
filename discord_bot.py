@@ -252,6 +252,13 @@ class ChannelButton(discord.ui.View):
 
 @bot.event
 async def on_ready():
+    # --- İSTEDİĞİN GÖRSELDEKİ DURUMU BURAYA EKLEDİM ---
+    await bot.change_presence(
+        status=discord.Status.dnd, 
+        activity=discord.CustomActivity(name="SMS GÖNDERİYORUM RAHATSIZ ETME")
+    )
+    # ------------------------------------------------
+
     guild_id = config.get('guild_id')
     guild = discord.Object(id=guild_id)
     bot.tree.copy_global_to(guild=guild)
@@ -282,7 +289,7 @@ async def on_ready():
     
     bot.loop.create_task(process_queue())
     cleanup_task.start()
-    print(f"✅ Bot hazır: {bot.user}")
+    sys.__stdout__.write(f"✅ Bot hazır: {bot.user}\n")
 
 @bot.tree.command(name="sms", description="Normal SMS (Maks 30)")
 async def sms_command(interaction: discord.Interaction, numara: str, sayi: int):
@@ -318,7 +325,6 @@ async def vipsms_command(interaction: discord.Interaction, numara: str, sayi: in
     job_queue.put((1, {'interaction': interaction, 'tel_no': numara, 'mode': 'turbo', 'kere': sayi, 'user_type': 'vip', 'user_id': interaction.user.id}))
 
 if __name__ == "__main__":
-    # Önce config.json'a bakar, orada token yoksa Koyeb ayarlarındaki (BOT_TOKEN) kısmına bakar
     token = config.get('bot_token')
     if not token or token == "":
         token = os.getenv('BOT_TOKEN')
@@ -326,5 +332,4 @@ if __name__ == "__main__":
     if token:
         bot.run(token)
     else:
-        # Eğer loglar kapalıysa bile bu hata mesajını terminalde zorla gösterir
         sys.__stdout__.write("❌ HATA: Token bulunamadı! Lütfen config.json veya Koyeb ayarlarına token ekleyin.\n")
