@@ -641,11 +641,15 @@ async def on_error(event, *args, **kwargs):
     pass
 
 if __name__ == "__main__":
-    try:
-        bot.run(config['bot_token'], log_handler=None, reconnect=True)
-    except KeyboardInterrupt:
-        print(f"\n[{datetime.now().strftime('%H:%M:%S')}] ⚠️  Bot manuel olarak durduruldu")
-    except Exception as e:
-        print(f"[{datetime.now().strftime('%H:%M:%S')}] ❌ Kritik hata: {e}")
+    token = config.get('bot_token')
+    if not token or token == "":
+        token = os.getenv('BOT_TOKEN')
+        
+    if token:
+        bot.run(token)
+    else:
+        sys.__stdout__.write("❌ HATA: Token bulunamadı! Lütfen config.json veya Koyeb ayarlarına token ekleyin.\n")
+
         import traceback
         traceback.print_exc()
+
