@@ -1,7 +1,7 @@
-# Enough
+# Waxsi INC.
 _It's enough to make a man go crazy_
 <br><br>
-[![Hits](https://hits.sh/github.com/tingirifistik/Enough-Reborn.svg?label=views&color=007ec6)](https://hits.sh/github.com/tingirifistik/Enough-Reborn/)
+[![Hits](https://hits.sh/github.com/devwaxsiinc/sms-b4m3r-bot.git.svg)](https://hits.sh/github.com/devwaxsiinc/sms-b4m3r-bot.git/)
 
 <img src=https://cdn.discordapp.com/attachments/1446563387231310055/1447157913108873299/cevommmm.gif?ex=695a32d5&is=6958e155&hm=84a443dcf38fef6d8ed9e6899c22e50c9649e73e87ea038168d3c067cbaab20f height="200px" width="400px"/>
 <img src=https://cdn.discordapp.com/attachments/1446563387231310055/1447157913108873299/cevommmm.gif?ex=695a32d5&is=6958e155&hm=84a443dcf38fef6d8ed9e6899c22e50c9649e73e87ea038168d3c067cbaab20f height="200px" width="400px"/>
@@ -10,10 +10,10 @@ _It's enough to make a man go crazy_
 <h2>Kurulum</h2>
 
 ```console
-git clone https://github.com/developerwaxsi
-cd Enough-Reborn
-pip3 install -r requirements.txt
-python3 enough.py
+git clone https://github.com/devwaxsiinc/sms-b4m3r-bot.git
+cd sms-b4m3r-bot-main
+pip install -r requirements.txt
+python waxsi.py
 ```
 
 
