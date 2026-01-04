@@ -491,7 +491,7 @@ async def on_resumed():
 @bot.tree.command(name="sms", description="Normal SMS gönderme komutu (Normal üyeler için)")
 @app_commands.describe(
     numara="Telefon numarası (10 haneli)",
-    sayi="Gönderilecek SMS sayısı (1-500 arası)"
+    sayi="Gönderilecek SMS sayısı (1-100 arası)"
 )
 @app_commands.default_permissions(send_messages=True)
 async def sms_command(interaction: discord.Interaction, numara: str, sayi: int):
@@ -666,5 +666,6 @@ if __name__ == "__main__":
 
         import traceback
         traceback.print_exc()
+
 
 
